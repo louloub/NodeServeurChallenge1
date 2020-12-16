@@ -99,12 +99,14 @@ app.put("/api/movies/:id", (req, res) => {
 // --- POST METHOD ---
 app.post("/api/movies", (req, res) => {
   const { title, director, year, color, duration } = req.body;
+  console.log("req.body ==> " +req)
   connection.query(
     "INSERT INTO movies(title, director, year, color, duration) VALUES(?, ?, ?, ?, ?)",
     [title, director, year, color, duration], 
     (err, results) => {
           if (err) {
             console.log(err);
+            console.log("results ==> " +results);
             res.status(500).send("Error saving a movie");
           } else {
             res.status(200).send("Successfully saved");
